@@ -10,13 +10,14 @@ import com.marondal.spring.ex.mybatis.bo.ReviewBO;
 import com.marondal.spring.ex.mybatis.model.Review;
 
 @Controller
+@RequestMapping("/mybatis")
 public class ReviewController {
 	
 	@Autowired
 	private ReviewBO reviewBO;
 	
 	// 특정 id의 Review 데이터 가져오기
-	@RequestMapping("/mybatis/ex01/1")
+	@RequestMapping("/ex01")
 	@ResponseBody
 	public Review review(
 //			@RequestParam("id") int id
@@ -31,5 +32,24 @@ public class ReviewController {
 		
 		return review;
 	}
+	
+	@RequestMapping("/ex02")
+	@ResponseBody
+	public String addReview() {
+		// 가게 id, 메뉴, 사용자이름, 별점, 리뷰내용
+//		int count = reviewBO.addReview(4, "콤비네이션피자", "김바다", 4.5, "할인도 많이 받고 잘먹었습니다!!");
+		Review review = new Review();
+		review.setStoreId(2);
+		review.setMenu("뿌링클");
+		review.setUserName("김인규");
+		review.setPoint(4.0);
+		review.setReview("역시 뿌링클은 진리입니다!!");
+		int count = reviewBO.addReviewByObject(review);
+		
+		return "삽입 결과 : " + count;
+		
+	}
+	
+	
 
 }

@@ -22,6 +22,63 @@
 		WHERE
 			`id` = #{id}
 	</select>
+	
+	
+	<insert id="insertReview" parameterType="map">
+	
+		INSERT INTO
+			`new_review`
+		(
+			`storeId`
+			, `menu`
+			, `userName`
+			, `point`
+			, `review`
+			, `createdAt`
+			, `updatedAt`
+		)
+		VALUES
+		(
+		<!-- @Param 키워드  -->
+			#{storeId}
+			, #{menu}
+			, #{userName}
+			, #{point}
+			, #{review}
+			, now()
+			, now()
+		
+		)
+		
+	
+	</insert>
+	
+	<insert id="insertReviewByObject" parameterType="com.marondal.spring.ex.mybatis.model.Review">
+		INSERT INTO
+			`new_review`
+		(
+			`storeId`
+			, `menu`
+			, `userName`
+			, `point`
+			, `review`
+			, `createdAt`
+			, `updatedAt`
+		)
+		VALUES
+		(
+		<!--  Review 클래스의 멤버변수 이름 -->
+			#{storeId}
+			, #{menu}
+			, #{userName}
+			, #{point}
+			, #{review}
+			, now()
+			, now()
+		)
+	</insert>
+	
+	
 
 
 </mapper>
