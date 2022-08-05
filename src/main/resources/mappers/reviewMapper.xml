@@ -6,7 +6,8 @@
 
 <mapper namespace="com.marondal.spring.ex.mybatis.dao.ReviewDAO">
 	
-	<select id="selectReview" resultType="com.marondal.spring.ex.mybatis.model.Review">
+	<select id="selectReview" resultType="com.marondal.spring.ex.mybatis.model.Review"
+		parameterType="int">
 		SELECT 
 			`id`
 			, `storeId`

@@ -18,7 +18,14 @@ public class ReviewController {
 	// 특정 id의 Review 데이터 가져오기
 	@RequestMapping("/mybatis/ex01/1")
 	@ResponseBody
-	public Review review(@RequestParam("id") int id) {
+	public Review review(
+//			@RequestParam("id") int id
+//			@RequestParam(value="id", required=true) int id
+//			@RequestParam(value="id", required=false) Integer id  // 필수 항목이 아닌 파라미터 설정
+			@RequestParam(value="id", defaultValue="3") int id
+//			, @RequestParam("test") String test
+			
+			) {
 		
 		Review review = reviewBO.getReview(id);
 		
