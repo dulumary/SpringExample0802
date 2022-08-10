@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -52,6 +53,19 @@ public class UserController {
 		
 		model.addAttribute("title", "최근 등록 사용자 정보");
 		model.addAttribute("user", lastUser);
+		
+		return "jsp/userInfo";
+		
+	}
+	
+	@PostMapping("/add/view")
+	public String addUserView(
+			@ModelAttribute User user
+			, Model model) {
+		
+		int count = userBO.addUserByObject(user);
+		
+		model.addAttribute("user", user);
 		
 		return "jsp/userInfo";
 		
